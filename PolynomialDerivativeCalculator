@@ -1,0 +1,65 @@
+#include <stdio.h>
+//Random project I made for fun, not really optimal or completely accurate
+//Just putting some of the skills I learned to test
+int main() {
+    int how;
+
+    printf("How many different X variables are there\n");
+    scanf("%d", &how);
+
+    int power[how];
+    int coef[how + 1];
+    char equa[(how * 6) + 1]; 
+
+    int x = 0;
+    int b = 0;
+    while (x < how) {
+        printf("What is the exponent of X number %d \n", x + 1);
+        scanf("%d", &power[x]);
+
+        printf("What is the coefficient of X number %d \n", x + 1);
+        scanf("%d", &coef[x]);
+
+       
+        b += sprintf(equa + b, "%d", coef[x]);
+        b += sprintf(equa + b, "x^%d", power[x]);
+        
+        x++;
+        if(x<how)
+            b += sprintf(equa + b, "+");
+    }
+    printf("What is the coefficient of the last term? \n");
+    scanf("%d", &coef[x + 1]);
+    b += sprintf(equa + b, "+%d", coef[x + 1]);
+    
+    x=0;
+    b=0;
+    printf("y = %s \n", equa);
+    char equa2[(how * 6) + 1];
+    
+    //find derivative
+int newpower[how],newcoef[how];
+    while (x<how)
+        {   
+            
+            newpower[x] = power[x] - 1;
+            newcoef[x] = power[x] * coef[x];
+            
+            
+            
+              b += sprintf(equa2 + b, "%d", newcoef[x]);
+        b += sprintf(equa2 + b, "x^%d", newpower[x]);
+        
+        x++;
+        if(x<how)
+            b += sprintf(equa2 + b, "+");
+            
+            
+        }
+
+printf("y' = %s \n", equa2);
+
+
+
+    return 0;
+}
